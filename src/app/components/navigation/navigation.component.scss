@@ -1,0 +1,68 @@
+@import '../../styles/main';
+
+.app-header {
+  color: $white;
+  padding-top: 0;
+  padding-bottom: 0;
+  background: $red;
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+  top: 0;
+
+  &.navbar {
+    display: block;
+  }
+
+  .main {
+    align-items: center;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .title {
+    text-align: center;
+    width: 150px;
+    padding: 5px;
+    background: $dark-red;
+    font-size: $font-s;
+    font-weight: $font-weight-light;
+    margin: auto;
+    @media (min-width: $screen-sm) {
+      font-size: $font-l;
+      width: 250px;
+      padding: 2px 0 8px;
+    }
+  }
+  .fa-bars {
+    font-size: 25px;
+  }
+  .icon {
+    text-align: right;
+    cursor: pointer;
+  }
+
+  .flyout {
+    border-top: 1px solid $white;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    .logout-link {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
+.hidden-lg-up {
+  @media (min-width: $screen-md) {
+    display: none;
+  }
+}
+
+.show-lg-up {
+  display: none;
+  @media (min-width: $screen-md) {
+    display: flex;
+  }
+}

@@ -1,0 +1,43 @@
+<nav class="navbar navbar-dark app-header">
+  <div class="container">
+    <div class="row main">
+      <div class="col-2 col-lg-3">
+        <i
+          class="fa fa-bars hidden-lg-up"
+          data-toggle="collapse"
+          data-target="#navDropdown"
+          aria-controls="navDropdown"
+          aria-expanded="true"
+        ></i>
+        <div class="row show-lg-up">
+          <div class="col-6 col-md-5">
+            <span (click)="logout()" class="logout-link">Logout</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-8 col-lg-6">
+        <div class="title">
+          Login
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div
+    #flyout
+    class="row justify-content-end collapse navbar-collapse flyout hidden-lg-up"
+    [class.show]="false"
+    id="navDropdown"
+  >
+    <div *ngIf="isLoggingin" class="col-6">
+      <span (click)="logout()" class="logout-link">{{ 'key-logout' | translate | async }}</span>
+    </div>
+    <div *ngIf="language$ | async as language" class="col-6 language">
+      <ul>
+        <li (click)="select('de')" [class.active]="language === 'de'">DE</li>
+        <li (click)="select('en')" [class.active]="language === 'en'">EN</li>
+      </ul>
+    </div>
+  </div> -->
+</nav>
