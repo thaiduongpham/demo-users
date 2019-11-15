@@ -1,0 +1,23 @@
+@import '../../styles/main';
+
+.app-users {
+  padding-top: 100px;
+
+  .title {
+    font-weight: $font-weight-bold;
+  }
+
+  .user-items {
+    padding: 0;
+    margin-top: 10px;
+  }
+
+  app-user-item {
+    display: block;
+    padding: 10px 0;
+    cursor: pointer;
+    &:nth-child(2n + 1) {
+      background: $light-gray;
+    }
+  }
+}

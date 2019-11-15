@@ -1,0 +1,16 @@
+.error {
+  display: none;
+}
+
+input {
+  height: 45px;
+  &.ng-invalid.ng-touched {
+    border-color: $red;
+    + .error {
+      display: inline-block;
+      font-size: $font-s;
+      margin-top: 7px;
+      color: $red;
+    }
+  }
+}

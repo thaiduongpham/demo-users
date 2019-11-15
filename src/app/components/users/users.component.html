@@ -1,1 +1,15 @@
-<h1>Users works</h1>
+<div class="container app-users">
+  <div *ngIf="users$ | async as users" class="row">
+    <div class="col-3 title">First Name</div>
+    <div class="col-3 title">Last Name</div>
+    <div class="col-3 title">DOB</div>
+    <div class="col-3 title">Address</div>
+    <div *ngFor="let user of users" class="col-lg-12 user-items">
+      <app-user-item [user]="user"></app-user-item>
+      <app-user-item [user]="user"></app-user-item>
+      <app-user-item [user]="user"></app-user-item>
+      <app-user-item [user]="user"></app-user-item>
+      <app-user-item [user]="user"></app-user-item>
+    </div>
+  </div>
+</div>

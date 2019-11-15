@@ -1,0 +1,9 @@
+@import '../../../styles/main';
+
+.btn {
+  border: none;
+  @media (min-width: $screen-sm) {
+    font-size: $font-m + 2;
+    padding: 8px 18px 12px;
+  }
+}

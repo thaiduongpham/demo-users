@@ -1,0 +1,26 @@
+@import '../../styles/main';
+
+.app-login {
+  padding-top: 100px;
+
+  .info {
+    padding: 10px;
+    border: 2px solid $medium-gray;
+    margin-bottom: 30px;
+    width: 290px;
+    font-size: $font-s;
+    span {
+      margin: 0 10px;
+    }
+  }
+  label {
+    display: block;
+    margin-bottom: 3px;
+  }
+  .form-group {
+    margin-bottom: 20px;
+    @media (min-width: $screen-sm) {
+      margin-bottom: 30px;
+    }
+  }
+}
