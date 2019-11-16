@@ -5,11 +5,14 @@
     <div class="col-3 title">DOB</div>
     <div class="col-3 title">Address</div>
     <div *ngFor="let user of users" class="col-lg-12 user-items">
-      <app-user-item [user]="user"></app-user-item>
-      <app-user-item [user]="user"></app-user-item>
-      <app-user-item [user]="user"></app-user-item>
-      <app-user-item [user]="user"></app-user-item>
-      <app-user-item [user]="user"></app-user-item>
+      <app-user-item [user]="user" (click)="goToUserDetail(user.id)"></app-user-item>
+      <app-user-item [user]="user" (click)="goToUserDetail(user.id)"></app-user-item>
+      <app-user-item [user]="user" (click)="goToUserDetail(user.id)"></app-user-item>
+      <app-user-item [user]="user" (click)="goToUserDetail(user.id)"></app-user-item>
+      <app-user-item [user]="user" (click)="goToUserDetail(user.id)"></app-user-item>
     </div>
+  </div>
+  <div class="row add-btn text-right">
+    <app-button text="Add" type="button" (click)="goToUserDetail()"></app-button>
   </div>
 </div>

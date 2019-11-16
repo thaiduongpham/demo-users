@@ -1,0 +1,41 @@
+<div class="container app-user-detail">
+  <div class="row">
+    <div class="col col-sm-8 col-lg-6">
+      <form [formGroup]="userForm" class="login-form" (ngSubmit)="createUser()">
+        <div class="form-group">
+          <label for="firstName">First Name *</label>
+          <input type="text" id="firstName" placeholder="First Name" class="form-control" formControlName="firstName" />
+          <span class="error">First Name is required & has at most 20 characters!</span>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name *</label>
+          <input type="text" id="lastName" placeholder="Last Name" class="form-control" formControlName="lastName" />
+          <span class="error">Last Name is required & & has at most 20 characters!</span>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address *</label>
+          <input type="text" id="address" placeholder="Address" class="form-control" formControlName="address" />
+          <span class="error">Address is required & has at most 20 characters!</span>
+        </div>
+
+        <div class="form-group">
+          <label for="dob">Date of Birth (DOB) *</label>
+          <input
+            [matDatepicker]="picker"
+            matInput
+            type="text"
+            placeholder="Date of Birth"
+            class="form-control form-control--dob"
+            formControlName="dob"
+          />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </div>
+
+        <app-button text="Submit"></app-button>
+      </form>
+    </div>
+  </div>
+</div>

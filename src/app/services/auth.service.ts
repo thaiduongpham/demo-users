@@ -46,4 +46,8 @@ export class AuthService {
   getUsers(): Observable<User[]> {
     return this._http.get<User[]>(`${config.apiUrl}/users`);
   }
+
+  getNewUserId(): number {
+    return Math.floor(Math.random() * 10000);
+  }
 }

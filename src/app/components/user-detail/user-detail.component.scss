@@ -1,0 +1,20 @@
+@import '../../styles/main';
+
+.app-user-detail {
+  padding-top: 100px;
+
+  label {
+    display: block;
+    margin-bottom: 3px;
+  }
+  .form-group {
+    margin-bottom: 20px;
+    @media (min-width: $screen-sm) {
+      margin-bottom: 30px;
+    }
+  }
+  .form-control--dob {
+    display: inline-block;
+    width: 50%;
+  }
+}

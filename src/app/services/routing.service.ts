@@ -5,9 +5,13 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class RoutingService {
-  constructor(private router: Router) {}
+  constructor(private _router: Router) {}
 
   goTo(route: string) {
-    this.router.navigate([route]);
+    this._router.navigate([route]);
+  }
+
+  goToWithId(route: string, id: number) {
+    this._router.navigate([`${route}`, id]);
   }
 }
