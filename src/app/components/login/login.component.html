@@ -1,8 +1,5 @@
 <div class="container app-login">
   <div class="row">
-    <div class="col col-lg-4">
-      <app-alert [message]="submitMessage"></app-alert>
-    </div>
     <div class="col col-lg-12">
       <div class="info">
         <span>Username: admin</span>
@@ -16,13 +13,13 @@
         <div class="form-group">
           <label for="username">Username *</label>
           <input type="text" id="username" placeholder="Username" class="form-control" formControlName="username" />
-          <span class="error">Username is required!</span>
+          <span class="invalid">Username is required!</span>
         </div>
 
         <div class="form-group">
           <label for="password">Password *</label>
           <input type="password" id="password" placeholder="Password" class="form-control" formControlName="password" />
-          <span class="error">Password is required!</span>
+          <span class="invalid">Password is required!</span>
         </div>
 
         <app-button text="Login"></app-button>

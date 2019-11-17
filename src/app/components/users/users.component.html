@@ -1,5 +1,5 @@
 <div class="container app-users">
-  <div *ngIf="users$ | async as users" class="row">
+  <div *ngIf="users$ | async as users; else loading" class="row">
     <div class="col-3 title">First Name</div>
     <div class="col-3 title">Last Name</div>
     <div class="col-3 title">DOB</div>
@@ -8,6 +8,9 @@
       <app-user-item [user]="user"></app-user-item>
     </div>
   </div>
+  <ng-template #loading>
+    <span class="loading"></span>
+  </ng-template>
   <div class="row add-btn text-right">
     <app-button text="Add" type="button" (click)="goToUserDetail()"></app-button>
   </div>

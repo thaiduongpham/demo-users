@@ -18,7 +18,7 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MockBackendInterceptor } from './utils/mock-backend';
 import { MatInputModule, MatFormFieldModule, MatNativeDateModule, MatDatepickerModule } from '@angular/material';
-import { AlertComponent } from './components/alert/alert.component';
+import { ToastComponent } from './components/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { AlertComponent } from './components/alert/alert.component';
     UsersComponent,
     UserItemComponent,
     UserDetailComponent,
-    AlertComponent,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,

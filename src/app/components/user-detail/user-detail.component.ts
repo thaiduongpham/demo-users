@@ -1,13 +1,14 @@
-import { UserRequest } from './../../models/user-request.interface';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
-import { User } from '@app/models/user.interface';
 import * as routes from '@app/app.routes';
+import { UiService } from '@app/services/ui.service';
 import { RoutingService } from '@app/services/routing.service';
 import { MatDatepicker } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '@app/services/user.service';
+import { UserRequest } from '@app/models/user-request.interface';
+import { ToastStatus } from '@app/models/toast-status.enum';
 
 @Component({
   selector: 'app-user-detail',
@@ -29,6 +30,7 @@ export class UserDetailComponent implements OnInit {
     private _userService: UserService,
     private _route: ActivatedRoute,
     private _routingService: RoutingService,
+    private _uiService: UiService,
   ) {}
   ngOnInit() {
     this._initForm();
@@ -59,8 +61,10 @@ export class UserDetailComponent implements OnInit {
     const dob = this.dobControl.value.toString();
     const userRequest: UserRequest = { id: this.userId, firstName, lastName, address, dob };
     try {
-      const result = await this._userService.addUser(userRequest).toPromise();
-      console.log(result);
+      await this._userService.addUser(userRequest).toPromise();
+      const toast = { message: 'Save Successfully!', status: ToastStatus.success };
+      this._uiService.showToast(toast);
+
       this._routingService.goTo(routes.USERS);
     } catch (err) {
       console.log('__ERROR__', err);

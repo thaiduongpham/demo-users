@@ -1,9 +1,12 @@
+import { UiService } from '@app/services/ui.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 import { AuthService } from '@app/services/auth.service';
 import { RoutingService } from '@app/services/routing.service';
 import * as routes from '@app/app.routes';
+import { Toast } from '@app/models/toast.interface';
+import { ToastStatus } from '@app/models/toast-status.enum';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +17,13 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   usernameControl: FormControl;
   passwordControl: FormControl;
-  submitMessage = '';
 
-  constructor(private _fb: FormBuilder, private _authService: AuthService, private _routingService: RoutingService) {}
+  constructor(
+    private _fb: FormBuilder,
+    private _authService: AuthService,
+    private _uiService: UiService,
+    private _routingService: RoutingService,
+  ) {}
   ngOnInit() {
     this._initForm();
   }
@@ -44,7 +51,8 @@ export class LoginComponent implements OnInit {
         this._routingService.goTo(routes.USERS);
       }
     } catch (err) {
-      this.submitMessage = err;
+      const toast: Toast = { message: err, status: ToastStatus.error };
+      this._uiService.showToast(toast);
     }
   }
 }

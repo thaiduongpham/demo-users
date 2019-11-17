@@ -1,0 +1,15 @@
+@import '../../styles/main';
+
+.app-toast-content {
+  position: fixed;
+  top: 61px;
+  z-index: 9999;
+  padding: 12px 30px;
+  color: $white;
+  &.success {
+    background: $green;
+  }
+  &.error {
+    background: $red;
+  }
+}
