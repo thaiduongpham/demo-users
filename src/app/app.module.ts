@@ -18,6 +18,7 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MockBackendInterceptor } from './utils/mock-backend';
 import { MatInputModule, MatFormFieldModule, MatNativeDateModule, MatDatepickerModule } from '@angular/material';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MatInputModule, MatFormFieldModule, MatNativeDateModule, MatDatepickerM
     UsersComponent,
     UserItemComponent,
     UserDetailComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,

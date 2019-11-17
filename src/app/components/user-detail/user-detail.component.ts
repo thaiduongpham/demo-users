@@ -1,11 +1,13 @@
+import { UserRequest } from './../../models/user-request.interface';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
-import { AuthService } from '@app/services/auth.service';
 import { User } from '@app/models/user.interface';
 import * as routes from '@app/app.routes';
 import { RoutingService } from '@app/services/routing.service';
 import { MatDatepicker } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from '@app/services/user.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -14,17 +16,24 @@ import { MatDatepicker } from '@angular/material';
 })
 export class UserDetailComponent implements OnInit {
   @ViewChild(MatDatepicker, { static: true }) datepicker: MatDatepicker<Date>;
+  userId: number;
 
   userForm: FormGroup;
   firstNameControl: FormControl;
   lastNameControl: FormControl;
   addressControl: FormControl;
   dobControl: FormControl;
-  isHidden = true;
 
-  constructor(private _fb: FormBuilder, private _authService: AuthService, private _routingService: RoutingService) {}
+  constructor(
+    private _fb: FormBuilder,
+    private _userService: UserService,
+    private _route: ActivatedRoute,
+    private _routingService: RoutingService,
+  ) {}
   ngOnInit() {
     this._initForm();
+    const params = this._route.snapshot.params;
+    this.userId = +params.id;
   }
 
   private _initForm(): void {
@@ -41,7 +50,20 @@ export class UserDetailComponent implements OnInit {
     });
   }
 
-  createUser(): void {
-    console.log('creating user...');
+  async onSubmit() {
+    if (!this.userForm.valid) {
+      return this.userForm.markAllAsTouched();
+    }
+
+    const { firstName, lastName, address } = this.userForm.value;
+    const dob = this.dobControl.value.toString();
+    const userRequest: UserRequest = { id: this.userId, firstName, lastName, address, dob };
+    try {
+      const result = await this._userService.addUser(userRequest).toPromise();
+      console.log(result);
+      this._routingService.goTo(routes.USERS);
+    } catch (err) {
+      console.log('__ERROR__', err);
+    }
   }
 }

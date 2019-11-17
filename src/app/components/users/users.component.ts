@@ -1,7 +1,7 @@
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { AuthService } from '@app/services/auth.service';
 
 import { User } from '@app/models/user.interface';
 import { USERS } from '@app/app.routes';
@@ -14,14 +14,14 @@ import { RoutingService } from '@app/services/routing.service';
 })
 export class UsersComponent implements OnInit {
   users$: Observable<User[]>;
-  constructor(private _authService: AuthService, private _routingService: RoutingService) {}
+  constructor(private _routingService: RoutingService, private _userService: UserService) {}
 
   ngOnInit(): void {
-    this.users$ = this._authService.getUsers();
+    this.users$ = this._userService.getUsers();
   }
 
-  goToUserDetail(userId: number): void {
-    const id = userId || this._authService.getNewUserId();
+  goToUserDetail(): void {
+    const id = this._userService.getNewUserId();
     this._routingService.goToWithId(USERS, id);
   }
 }

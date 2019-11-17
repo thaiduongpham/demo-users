@@ -1,3 +1,4 @@
+import { RoutingService } from '@app/services/routing.service';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, UrlTree, Router, Routes, RouterStateSnapshot } from '@angular/router';
 import * as routes from '@app/app.routes';
@@ -7,7 +8,7 @@ import { AuthService } from '@app/services/auth.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private _router: Router, private _authService: AuthService) {}
+  constructor(private _router: Router, private _authService: AuthService, private _routingService: RoutingService) {}
 
   canActivate(_route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const currentUser = this._authService.currentUserValue;
@@ -17,6 +18,7 @@ export class AuthGuard implements CanActivate {
 
     // not logged in so redirect to login page with the return url
     this._router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+    this._routingService.goTo('/login');
     return false;
   }
 

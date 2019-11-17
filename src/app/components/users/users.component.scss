@@ -15,7 +15,6 @@
   app-user-item {
     display: block;
     padding: 10px 0;
-    cursor: pointer;
     &:nth-child(2n + 1) {
       background: $light-gray;
     }

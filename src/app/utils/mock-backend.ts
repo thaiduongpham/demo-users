@@ -6,30 +6,30 @@ import { User } from '@app/models/user.interface';
 
 @Injectable()
 export class MockBackendInterceptor implements HttpInterceptor {
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const users: User[] = [
-      {
-        id: 1,
-        username: 'admin',
-        password: 'admin',
-        firstName: 'Admin',
-        lastName: 'User',
-        dob: '11.11.2011',
-        address: '10000 Berlin, Germany',
-        token: 'mock-jwt-token',
-      },
-    ];
+  users: User[] = [
+    {
+      id: 1,
+      username: 'admin',
+      password: 'admin',
+      firstName: 'Admin',
+      lastName: 'User',
+      dob: '11.11.2011',
+      address: '10000 Berlin, Germany',
+      token: 'mock-jwt-token',
+    },
+  ];
 
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const authHeader = request.headers.get('Authorization');
     const isLoggedIn = authHeader && authHeader.startsWith('Bearer mock-jwt-token');
 
-    // wrap in delayed observable to simulate server api call
     return of(null)
       .pipe(
         mergeMap(() => {
-          // authenticate - public
           if (request.url.endsWith('/login') && request.method === 'POST') {
-            const user = users.find(x => x.username === request.body.username && x.password === request.body.password);
+            const user = this.users.find(
+              x => x.username === request.body.username && x.password === request.body.password,
+            );
             if (!user) {
               return this._getError('Username or password is incorrect');
             }
@@ -37,15 +37,20 @@ export class MockBackendInterceptor implements HttpInterceptor {
             return this._getSuccess(user);
           }
 
-          // get all users
           if (request.url.endsWith('/users') && request.method === 'GET') {
             if (!isLoggedIn) {
               return this._getUnauthorisedError();
             }
-            return this._getSuccess(users);
+            return this._getSuccess(this.users);
           }
 
-          // pass through any requests not handled above
+          if (request.url.endsWith('/newUser') && request.method === 'POST') {
+            const { firstName, lastName, address, dob, id } = request.body.userRequest;
+            const newUser = { id, firstName, lastName, address, dob };
+            this.users.push(newUser);
+            return this._getSuccess(this.users);
+          }
+
           return next.handle(request);
         }),
       )

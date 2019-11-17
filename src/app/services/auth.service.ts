@@ -1,3 +1,4 @@
+import { UserRequest } from './../models/user-request.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -41,13 +42,5 @@ export class AuthService {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
     this._routingService.goTo(routes.LOGIN);
-  }
-
-  getUsers(): Observable<User[]> {
-    return this._http.get<User[]>(`${config.apiUrl}/users`);
-  }
-
-  getNewUserId(): number {
-    return Math.floor(Math.random() * 10000);
   }
 }

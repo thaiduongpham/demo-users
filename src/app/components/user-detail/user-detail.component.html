@@ -1,7 +1,7 @@
 <div class="container app-user-detail">
   <div class="row">
     <div class="col col-sm-8 col-lg-6">
-      <form [formGroup]="userForm" class="login-form" (ngSubmit)="createUser()">
+      <form [formGroup]="userForm" class="login-form" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="firstName">First Name *</label>
           <input type="text" id="firstName" placeholder="First Name" class="form-control" formControlName="firstName" />

@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   usernameControl: FormControl;
   passwordControl: FormControl;
-  isHidden = true;
+  submitMessage = '';
 
   constructor(private _fb: FormBuilder, private _authService: AuthService, private _routingService: RoutingService) {}
   ngOnInit() {
@@ -33,19 +33,18 @@ export class LoginComponent implements OnInit {
 
   async login() {
     if (!this.loginForm.valid) {
-      return;
+      return this.loginForm.markAllAsTouched();
     }
 
-    const isAuthenticated = await this._authService
-      .login(this.usernameControl.value, this.passwordControl.value)
-      .toPromise();
-
-    console.log(isAuthenticated);
-
-    if (isAuthenticated) {
-      this._routingService.goTo(routes.USERS);
-    } else {
-      this.isHidden = false;
+    try {
+      const isAuthenticated = await this._authService
+        .login(this.usernameControl.value, this.passwordControl.value)
+        .toPromise();
+      if (isAuthenticated) {
+        this._routingService.goTo(routes.USERS);
+      }
+    } catch (err) {
+      this.submitMessage = err;
     }
   }
 }
