@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
+
 import { User } from '@app/models/user.interface';
 
 @Injectable()
@@ -45,10 +47,13 @@ export class MockBackendInterceptor implements HttpInterceptor {
           }
 
           if (request.url.endsWith('/newUser') && request.method === 'POST') {
-            const { firstName, lastName, address, dob, id } = request.body.userRequest;
-            const newUser = { id, firstName, lastName, address, dob };
-            this.users.push(newUser);
-            return this._getSuccess(this.users);
+            if (!!request.body && !!request.body.userRequest) {
+              const { firstName, lastName, address, dob, id } = request.body.userRequest;
+              const newUser = { id, firstName, lastName, address, dob };
+              this.users.push(newUser);
+              return this._getSuccess(this.users);
+            }
+            return this._getError('Something went wrong');
           }
 
           return next.handle(request);

@@ -22,7 +22,7 @@
     &.active {
       margin-left: -350px;
     }
-    @media (max-width: 768px) {
+    @media (max-width: $screen-sm) {
       margin-left: -350px;
       &.active {
         margin-left: 0;
