@@ -1,26 +1,19 @@
-<nav class="navbar navbar-dark app-header">
-  <div class="container">
-    <div class="row main">
-      <div class="col-2 col-lg-3">
-        <i
-          class="fa fa-bars hidden-lg-up"
-          data-toggle="collapse"
-          data-target="#navDropdown"
-          aria-controls="navDropdown"
-          aria-expanded="true"
-        ></i>
-        <div class="row show-lg-up">
-          <div class="col-6 col-md-5">
-            <span (click)="logout()" class="logout-link">Logout</span>
-          </div>
-        </div>
-      </div>
+<div class="app-navigation">
+  <nav id="sidebar">
+    <div class="title">Demo Users</div>
+    <ul class="list-unstyled links">
+      <li *ngIf="isLoggedIn$ | async" (click)="logout()">Logout</li>
+      <li (click)="goToUsers()">Users</li>
+      <li (click)="goToUserDetail()">User Detail</li>
+    </ul>
+  </nav>
 
-      <div class="col-8 col-lg-6">
-        <div *ngIf="routeName$ | async as routeName" class="title">
-          {{ routeName }}
-        </div>
+  <div id="content">
+    <nav class="navbar">
+      <div class="container-fluid">
+        <i class="fa fa-bars" (click)="toggleSidebar()"></i>
       </div>
-    </div>
+    </nav>
+    <ng-content></ng-content>
   </div>
-</nav>
+</div>

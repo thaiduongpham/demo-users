@@ -1,9 +1,9 @@
-import { UserRequest } from './../models/user-request.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { User } from '@app/models/user.interface';
 import { config } from '@app/utils/config';
 import { RoutingService } from './routing.service';

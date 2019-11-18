@@ -1,72 +1,53 @@
 @import '../../styles/main';
 
-.app-header {
-  color: $white;
-  padding-top: 0;
-  padding-bottom: 0;
-  background: $red;
-  position: fixed;
+.app-navigation {
+  display: flex;
   width: 100%;
-  z-index: 9999;
-  top: 0;
-
-  &.navbar {
-    display: block;
-  }
-
-  .main {
-    align-items: center;
-    width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
+  align-items: stretch;
 
   .title {
-    text-align: center;
-    width: 135px;
-    padding: 5px;
+    font-size: $font-l;
+    padding-bottom: 10px;
+    border-bottom: 1px solid;
+  }
+
+  #sidebar {
+    width: 350px;
+    min-width: 200px;
+    min-height: 100vh;
+    padding: 15px;
     background: $dark-red;
-    font-size: $font-s;
-    font-weight: $font-weight-light;
-    margin: auto;
-    text-transform: uppercase;
-    @media (min-width: $screen-sm) {
-      font-size: $font-l;
-      width: 250px;
-      padding: 2px 0 8px;
+    color: $white;
+    transition: all 0.3s;
+    &.active {
+      margin-left: -350px;
+    }
+    @media (max-width: 768px) {
+      margin-left: -350px;
+      &.active {
+        margin-left: 0;
+      }
     }
   }
+
+  .navbar {
+    background: $medium-gray;
+  }
+
   .fa-bars {
-    font-size: 25px;
-  }
-  .icon {
-    text-align: right;
+    color: $white;
+    font-size: 30px;
     cursor: pointer;
   }
 
-  .logout-link {
-    cursor: pointer;
-  }
-
-  .flyout {
-    border-top: 1px solid $white;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    .logout-link {
-      text-decoration: underline;
+  ul {
+    li {
+      margin: 20px 0;
+      cursor: pointer;
     }
   }
-}
 
-.hidden-lg-up {
-  @media (min-width: $screen-md) {
-    display: none;
-  }
-}
-
-.show-lg-up {
-  display: none;
-  @media (min-width: $screen-md) {
-    display: flex;
+  #content {
+    width: 100%;
   }
 }
