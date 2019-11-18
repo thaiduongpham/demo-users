@@ -15,7 +15,6 @@ import { RoutingService } from '@app/services/routing.service';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
-  routeName$: Observable<string>;
   isLoggedIn$: Observable<boolean>;
 
   constructor(
@@ -26,7 +25,6 @@ export class NavigationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.routeName$ = this._uiService.navigationTitle$;
     this.isLoggedIn$ = this._authService.currentUser.pipe(map(user => !!user));
   }
 
